@@ -1,11 +1,10 @@
-// Wait until the DOM is fully loaded
-window.addEventListener('DOMContentLoaded', (event) => {
-
-  // Hide the loader after a 3-second delay (match this with CSS animation duration)
+// Wait for the entire page to load before starting the animations
+window.addEventListener('load', () => {
+  // Hide the loader after 3 seconds (to match the loader box animation duration)
   const loader = document.getElementById('loader');
   setTimeout(() => {
-    loader.style.display = 'none';
-  }, 3000);
+    loader.style.display = 'none'; // Hide the loader
+  }, 3000); // The loader box animation duration
 
   // Animate "WORKS" text letter by letter
   const worksTitle = document.querySelector('.works-title');
@@ -14,7 +13,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   letters.forEach((letter, index) => {
     setTimeout(() => {
-      letter.classList.add('fly-away');
+      letter.classList.add('fly-away'); // Add the flying away animation
     }, delay);
     delay += 300; // Delay for each letter (300ms for each letter)
   });
