@@ -33,6 +33,7 @@ body {
   animation: morphToLine 3s forwards ease-in-out;
 }
 
+/* Loader Box Animation */
 @keyframes morphToLine {
   0% { transform: scale(1); }
   100% {
@@ -41,6 +42,19 @@ body {
     border-radius: 0;
   }
 }
+
+/* Works Section - Animation for letters flying away */
+@keyframes flyAwayLetter {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-30px); }
+}
+
+/* Fade-in for Work Items */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 
 /* HEADER SECTION */
 header {
