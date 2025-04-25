@@ -1,4 +1,3 @@
-// Wait for the window to load
 window.addEventListener('load', () => {
   // Set up the scene, camera, and renderer
   const scene = new THREE.Scene();
@@ -16,12 +15,13 @@ window.addEventListener('load', () => {
 
   // Load the 3D models (letters)
   const loader = new THREE.GLTFLoader();
-  const letters = ['P', 'H', 'O', 'T', 'O', 'G', 'R', 'A', 'P', 'H', 'E', 'R'];
+  const letters = ['P', 'H', 'O', 'T', 'O', 'G', 'R', 'A', 'P', 'H', 'E', 'R'];  // Updated to uppercase filenames
   const models = [];
   let loadedCount = 0;
 
   letters.forEach((letter, index) => {
     loader.load(`assets/models/${letter}.glb`, (gltf) => {
+      console.log(`${letter} model loaded successfully`); // Debugging: log when each model is loaded
       const model = gltf.scene;
       model.position.set(index * 4 - 20, Math.sin(index) * 3, 0); // Position each letter in 3D space
       model.scale.set(2, 2, 2); // Scale the model for visibility
@@ -31,10 +31,20 @@ window.addEventListener('load', () => {
 
       // Once all models are loaded, start animating them
       if (loadedCount === letters.length) {
+        console.log('All models loaded, starting animation'); // Debugging: log when all models are loaded
         animate();
+        hideLoader(); // Hide the loader once models are loaded
       }
+    }, undefined, (error) => {
+      console.error(`Error loading ${letter} model:`, error); // Log any loading errors
     });
   });
+
+  // Function to hide the loader after the models are loaded
+  function hideLoader() {
+    const loader = document.getElementById('loader');
+    loader.style.display = 'none'; // Hide the loader
+  }
 
   // Camera position
   camera.position.z = 50;
